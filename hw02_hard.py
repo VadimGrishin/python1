@@ -1,10 +1,30 @@
 # Задание-1: уравнение прямой вида y = kx + b задано в виде строки.
 # Определить координату y точки с заданной координатой x.
-
+print('Задание-1'+'-'*20)
 equation = 'y = -12x + 11111140.2121'
-x = 2.5
+equation = 'y = -3x - 15'
+x = -2.5
 # вычислите и выведите y
+n=equation.find('=')
+k=''
+for i in range(n+1,len(equation)):
+    if equation[i]!='x':
+        k +=equation[i]
+    else:
+        nx=i
+        break
+k=float(k)
+sgn=1
+n=equation.find('+',nx+1)
+if n== -1:
+    n=equation.find('-',nx+1)
+    sgn=-1
+b=''
 
+for i in range(n+1,len(equation)):
+    b +=equation[i]
+b=float(b)
+print('y = {}'.format(k*x+b*sgn))
 
 # Задание-2: Дата задана в виде строки формата 'dd.mm.yyyy'.
 # Проверить, корректно ли введена дата.
@@ -17,6 +37,7 @@ x = 2.5
 #  (т.е. 2 символа для дня, 2 - для месяца, 4 - для года)
 
 # Пример корректной даты
+print('Задание-2'+'-'*20)
 date = '01.11.1985'
 
 # Примеры некорректных дат
@@ -74,3 +95,24 @@ else:
 #
 # Вход: 11
 # Выход: 5 3
+print('Задание-3'+'-'*20)
+n=11
+nblock=int((3*n)**(1/3)) #номер полного квадратного блока этажей - первое приближение
+maxblock=nblock*(nblock+1/2)*(nblock+1)/3 # номер максимальной квартиры в этом 
+                    # блоке = сумма квадратов первых nblock натуральных чисел
+if n<=maxblock:
+    maxblock -=nblock**2 # уточнение номера, чтобы искомая квартира не попала в этот блок
+    nblock -=1 
+maxetag=nblock*(nblock+1)/2 # номер максимального этажа в этом блоке  
+
+etag=int(maxetag + (n-maxblock-1)//(nblock + 1)+1)
+in_etag=int ((n-maxblock-1) % (nblock + 1) + 1)
+print(etag, in_etag)
+
+
+
+
+
+
+
+
