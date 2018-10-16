@@ -13,3 +13,33 @@
 # Для решения данной задачи используйте алгоритмы из задания easy,
 # оформленные в виде соответствующих функций,
 # и импортированные в данный файл из easy.py
+
+
+import os, easy  
+menu = ''' 1. Перейти в папку (можно сразу ввести имя папки в текущей директории)
+ 2. Просмотреть содержимое текущей папки
+ 3. Удалить папку
+ 4. Создать папку
+ Чтобы выйти, введите q\n'''
+print(menu)
+dirname = ''
+while True:
+    print(' \> ' + os.getcwd())
+    key = input(' ' + 'Выберите номер действия (или папку для перехода): ')
+    if key not in ('1', '2', '3', '4', 'q'):
+        dirname = key
+        key = '1'
+    if key =='q':
+        break
+    elif key == '1':
+        if not dirname:
+            dirname = input(' ' + 'Введите имя папки: ')
+        easy.goto_next_dir(os.path.join(os.getcwd(),dirname))
+        
+        dirname = ''
+    elif key == '2':
+       easy.list_cur_dir()
+    elif key == '3':
+        easy.rm_dir(input(' ' + 'Введите имя папки: '))
+    elif key == '4':
+        easy.mk_dir(input(' ' + 'Введите имя папки: '))
